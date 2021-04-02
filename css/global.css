@@ -1,0 +1,161 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../fonts/power.ttf') format('truetype'),
+    local('Ubuntu Condensed');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Oswald';
+    src: url('../fonts/oswald.woff2') format('woff2'),
+    local('Oswald');
+    font-display: swap;
+}
+
+@keyframes lazy {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    background-color: #222222;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 19px;
+    color: #cfcfcf;
+}
+
+hr {
+    margin: 15px auto;
+    width: 85%;
+    border-color: #cfcfcf;
+}
+
+a {
+    outline: none;
+    text-decoration: none;
+    padding: 2px 1px 0;
+}
+
+a:link {
+    color: #969696;
+}
+
+a:visited {
+    border-bottom: 1px solid;
+    color: #707070;
+}
+
+a:focus {
+    border-bottom: 1px solid;
+    color: #fff;
+}
+
+a:hover {
+    border-bottom: 1px solid;
+    color: #707070;
+}
+
+a:active {
+    border-bottom: 1px solid;
+    color: #fff;
+}
+
+.center {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+}
+
+header, main, footer {
+    left: 0;
+    animation: lazy 1.5s forwards;
+    width: 100%;
+    background-color: #2f2f2f;
+    border-radius: 16px;
+    text-align: center;
+}
+
+main, footer {
+    padding: 20px 20px;
+}
+
+header {
+    padding: 0 20px;
+    line-height: 100px;
+    height: 100px;
+    top: 5%;
+    font-size: 3.25em;
+    font-family: 'Oswald', 'Ubuntu';
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+main {
+    margin: 20px 0;
+}
+
+footer {
+    bottom: 5%;
+}
+
+.window {
+    width: 100%;
+    height: 500px;
+    background-color: #131313;
+    border-radius: 12px;
+    padding: 20px 15px;
+}
+
+.window > .content {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    padding: 0 20px;
+}
+
+.window > .content > .left {
+    padding-right: 250px;
+    float: left;
+}
+
+.window > .content > .right {
+    float: right;
+    padding-left: 250px;
+}
+
+.window > .content > .chat {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.window > .content > .chat > .text {
+    border-radius: 10px;
+    padding: 10px 15px;
+    word-break: break-all;
+}
+
+.window > .content > .left > .text {
+    float: left;
+    background-color: #454545;
+}
+
+.window > .content > .right > .text {
+    float: right;
+    background-color: #292929;
+}
