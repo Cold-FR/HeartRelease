@@ -34,7 +34,7 @@ body {
     background-color: #edededed;
     font-family: 'Ubuntu', sans-serif;
     font-size: 19px;
-    color: #4ea5ff;
+    color: #505050;
 }
 
 a {
@@ -44,7 +44,7 @@ a {
 }
 
 a:link {
-    color: #505050;
+    color: #6c6c6c;
 }
 
 a:visited {
