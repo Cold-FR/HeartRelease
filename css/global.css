@@ -37,32 +37,46 @@ body {
     color: #505050;
 }
 
+input {
+    float: left;
+    border: 2px solid rgba(0, 0, 0, .1);
+    border-radius: 16px;
+    padding: 10px 15px;
+    outline: none;
+    font-size: 1.2em;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+input:focus {
+    border-color: #4ea5ff;
+}
+
 a {
     outline: none;
     text-decoration: none;
     padding: 2px 1px 0;
 }
 
-a:link {
+span > a:link {
     color: #7f7f7f;
 }
 
-a:visited {
+span > a:visited {
     border-bottom: 1px solid;
     color: #aaaaaa;
 }
 
-a:focus {
+span > a:focus {
     border-bottom: 1px solid;
     color: #aaaaaa;
 }
 
-a:hover {
+span > a:hover {
     border-bottom: 1px solid;
     color: #aaaaaa;
 }
 
-a:active {
+span > a:active {
     border-bottom: 1px solid;
     color: #aaaaaa;
 }
@@ -71,17 +85,20 @@ b {
     color: #ff3636;
 }
 
+div {
+    border-radius: 16px;
+}
+
 .center {
-    position: fixed;
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50%;
-    height: 90%;
+    width: 65%;
+    height: 95%;
 }
 
 header, main, footer {
-    left: 0;
     animation: lazy 1.5s forwards;
     width: 100%;
     background-color: #fff;
@@ -93,12 +110,16 @@ header, main, footer {
 header {
     line-height: 1;
     padding: 10px 20px;
-    height: 10%;
+    min-height: 5%;
+}
+
+.logo {
+    color: #ff3636;
+    padding: 0;
     font-size: 3.25em;
     font-family: 'Oswald', 'Ubuntu';
     text-transform: uppercase;
     font-weight: bold;
-    color: #ff3636;
 }
 
 main {
@@ -107,7 +128,7 @@ main {
 }
 
 footer {
-    height: 10%;
+    min-height: 10%;
     padding: 10px 20px;
     line-height: 1.75;
 }
@@ -115,47 +136,93 @@ footer {
 .window {
     width: 100%;
     height: 100%;
-    border-radius: 12px;
-    padding: 20px 15px;
+    padding: 15px 20px 20px;
+}
+
+.window > .top, .window > .content, .window > .bottom {
+    width: 100%;
+    text-align: left;
+}
+
+.window > .top, .window > .bottom {
+    height: calc(10% + 15px);
 }
 
 .window > .top {
-    width: 100%;
-    height: 10%;
-    background-color: #000;
+    position: relative;
+    border-radius: 0;
+    border-bottom: 2px solid rgba(0, 0, 0, .1);
+}
+
+.window > .top > .name, .window > .top > .state {
+    max-width: 85%;
+    position: absolute;
+    left: 15px;
+}
+
+.window > .top > .name {
+    font-weight: bold;
+    font-size: 1.5em;
+    top: 0;
+}
+
+.window > .top > .state {
+    bottom: 10px;
+}
+
+.window > .top > .state::before {
+    content: "●";
+    margin-right: 3px;
+    color: #78DE45;
 }
 
 .window > .content {
-    width: 100%;
-    height: 80%;
+    padding: 20px;
+    height: calc(80% - 70px);
     overflow-x: hidden;
-    padding: 0 20px;
-}
+    margin: 20px 0;
+    border: 2px solid rgba(0, 0, 0, .1);
 
-.window > .bottom {
-    width: 100%;
-    height: 10%;
-    background-color: #000;
-}
-
-.window > .content > .left {
-    padding-right: 250px;
-    float: left;
-}
-
-.window > .content > .right {
-    float: right;
-    padding-left: 250px;
 }
 
 .window > .content > .chat {
     width: 100%;
-    text-align: left;
     margin-bottom: 25px;
+    position: relative;
+}
+
+.window > .content > .chat:last-child {
+    margin-bottom: 0;
+}
+
+.window > .content > .left {
+    padding-right: 200px;
+    float: left;
+}
+.window > .content > .left::before, .window > .content > .right::after {
+    position: absolute;
+    top: 25%;
+    font-size: 1.5em;
+}
+
+.window > .content > .left::before {
+    content: "◄";
+    left: -20px;
+    color: #007AFF;
+}
+
+.window > .content > .right {
+    float: right;
+    padding-left: 200px;
+}
+
+.window > .content > .right::after {
+    content: "►";
+    right: -20px;
+    color: #4ea5ff;
 }
 
 .window > .content > .chat > .text {
-    border-radius: 10px;
     padding: 10px 15px;
     word-break: break-all;
     color: #fff;
@@ -169,4 +236,29 @@ footer {
 .window > .content > .right > .text {
     float: right;
     background-color: #4ea5ff;
+}
+
+.window > .bottom > input {
+    width: calc(100% - 115px);
+    height: 100%;
+}
+
+.content-btn {
+    float: right;
+    height: 100%;
+    padding: 0 15px;
+    font-size: 1.5em;
+    color: #4ea5ff;
+    user-select: none;
+    line-height: 2.5;
+}
+
+.content-btn:hover {
+    cursor: pointer;
+    opacity: .75;
+    text-decoration: underline;
+}
+
+#edit-name {
+    width: auto;
 }
