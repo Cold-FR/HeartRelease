@@ -1,6 +1,5 @@
 const msg = document.getElementById('msg');
 const submit = document.getElementById('send-chat');
-const edit = document.getElementById('edit-name');
 const chat = document.getElementById('chat');
 let username = '<b>Vous</b>';
 let friend = '<b>Heart Release</b>';
@@ -10,8 +9,10 @@ let isTyping = false;
 let delay;
 let introEnd = false;
 let introState = 0;
+let editState = 0;
+let waitRep;
 
-if (msg && submit && edit) {
+if (msg && submit) {
     msg.addEventListener('keydown', (e) => {
         e.key === 'Enter' ? submitEvent() : typing('user');
     });
@@ -19,32 +20,59 @@ if (msg && submit && edit) {
     submit.addEventListener('click', () => {
         submitEvent();
     });
-
-    ///edit.addEventListener('click', editName());
 }
 
 function submitEvent() {
-    userSubmit(msg.value);
-    if (!introEnd) {
-        if (introState === 1) {
-            username = `<b>${msg.value}</b>`;
-            introState = 2;
-        } else if (introState === 3) {
-            if (msg.value.replaceAll(' ', '').toLowerCase() !== 'non') friend = `<b>${msg.value}</b>`;
-            introState = 4;
+    if (msg.value.replaceAll(' ', '') !== '') {
+        userSubmit(msg.value);
+
+        if (!introEnd) {
+            if (introState === 1) {
+                username = `<b>${msg.value}</b>`;
+                introState = 2;
+            } else if (introState === 3) {
+                if (msg.value.replaceAll(' ', '').toLowerCase() !== 'non') friend = `<b>${msg.value}</b>`;
+                introState = 4;
+            }
+        } else {
+            edit.style.cursor = 'default';
         }
-    }
-    if (msg.value === 'HELP') {
-        setTimeout(() => {
-            msg.disabled = true;
-            botSubmit('EN COURS');
+
+        if (editState !== 0) {
+            if (msg.value.replaceAll(' ', '').toLowerCase() === 'annuler') {
+                clearInterval(waitRep);
+                editState = 0;
+                setTimeout(() => botSubmit('Les modifications ont bien été annulées.'), 1600);
+            } else {
+                if (editState === 1) {
+                    if (msg.value.replaceAll(' ', '').toLowerCase() === 'moi') {
+                        editState = 2;
+                    } else if (msg.value.replaceAll(' ', '').toLowerCase() === 'bot') {
+                        editState = 3;
+                    }
+                } else if (editState === 2) {
+                    username = `<b>${msg.value}</b>`;
+                    editState = 4;
+                } else if (editState === 3) {
+                    friend = `<b>${msg.value}</b>`;
+                    editState = 4;
+                }
+            }
+        }
+
+        if (msg.value === 'HELP') {
             setTimeout(() => {
-                msg.disabled = false;
-                msg.focus();
-            }, 2000);
-        }, 1600);
+                msg.disabled = true;
+                botSubmit('EN COURS');
+                setTimeout(() => {
+                    msg.disabled = false;
+                    msg.focus();
+                }, 2000);
+            }, 1600);
+        }
+
+        msg.value = '';
     }
-    msg.value = '';
 }
 
 function typing(source = 'user') {
@@ -125,16 +153,13 @@ function displayChat(side, content) {
 }
 
 function userSubmit(text) {
-    const noSpace = text.replaceAll(' ', '');
-    if (noSpace !== '') {
-        if (isTyping) {
-            deleteTyping();
-            setTimeout(() => {
-                return displayChat('right', text);
-            }, 300);
-        } else {
+    if (isTyping) {
+        deleteTyping();
+        setTimeout(() => {
             return displayChat('right', text);
-        }
+        }, 300);
+    } else {
+        return displayChat('right', text);
     }
 }
 

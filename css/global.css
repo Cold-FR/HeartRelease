@@ -321,5 +321,5 @@ footer {
 }
 
 #edit-name {
-    width: auto;
+    cursor: not-allowed;
 }

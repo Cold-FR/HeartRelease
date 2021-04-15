@@ -27,8 +27,8 @@ window.addEventListener('load', () => {
                 msg.disabled = false;
                 msg.focus();
                 introState = 1;
-                let waitRep = setInterval(() => {
-                    if(introState === 2){
+                waitRep = setInterval(() => {
+                    if (introState === 2) {
                         clearInterval(waitRep);
                         msg.disabled = true;
                         botSubmit(`Enchanté ${username}, moi c'est ${friend} ! Mais je peux changer de nom si tu le désires.`);
@@ -39,7 +39,7 @@ window.addEventListener('load', () => {
                                 msg.focus();
                                 introState = 3;
                                 waitRep = setInterval(() => {
-                                    if(introState === 4){
+                                    if (introState === 4) {
                                         clearInterval(waitRep);
                                         msg.disabled = true;
                                         friend === '<b>Heart Release</b>' ? botSubmit(intro[4]) : botSubmit(`Parfait ! Je m'appellerai donc désormais ${friend}.`);
@@ -57,9 +57,11 @@ window.addEventListener('load', () => {
                                                                 botSubmit(intro[10]);
                                                                 setTimeout(() => {
                                                                     botSubmit(intro[11]);
-                                                                    msg.disabled = false;
-                                                                    msg.focus();
-                                                                    introEnd = true;
+                                                                    setTimeout(() => {
+                                                                        msg.disabled = false;
+                                                                        msg.focus();
+                                                                        introEnd = true;
+                                                                    }, 1600);
                                                                 }, 2000);
                                                             }, 3000);
                                                         }, 3000);
