@@ -136,13 +136,7 @@ function displayChat(side, content) {
         if (div !== lastMsg) {
             div.style.animation = 'none';
             div.className.split(' ')[1] === 'left' ? div.style.left = '10px' : div.style.right = '10px';
-        } /*else {
-            setTimeout(() => {
-                console.log('lastmsg');
-                div.style.animation = 'none';
-                div.className.split(' ')[1] === 'left' ? div.style.left = '10px' : div.style.right = '10px';
-            }, 300);
-        }*/
+        }
     });
     chat.innerHTML +=
         '<div class="chat left" id="typing-bot" style="animation: none;display: none;"><div class="text"></div></div>' +
