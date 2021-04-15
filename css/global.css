@@ -234,19 +234,19 @@ footer {
 
 .window > .content > .chat {
     width: 100%;
-    margin-bottom: 20px;
+    margin-top: 20px;
     position: relative;
 }
 
-.window > .content > .chat:last-child {
-    margin-bottom: 0;
+.window > .content > .chat:first-child {
+    margin-top: 0;
 }
 
 .window > .content > .left {
     padding-right: 200px;
     float: left;
-    animation: tchatleft .5s forwards;
-    left: 10px;
+    animation: tchatleft .3s forwards;
+    left: -1500px;
 }
 
 .window > .content > .left::before, .window > .content > .right::after {
@@ -265,8 +265,8 @@ footer {
 .window > .content > .right {
     float: right;
     padding-left: 200px;
-    animation: tchatright .5s forwards;
-    right: 10px;
+    animation: tchatright .3s forwards;
+    right: -1500px;
 }
 
 .window > .content > .right::after {
@@ -277,7 +277,15 @@ footer {
 
 .window > .content > .chat > .text {
     padding: 10px 15px;
-    word-break: break-all;
+    word-break: break-word;
+    color: #fff;
+}
+
+.window > .content > .chat > .text > b {
+    color: #fff;
+}
+
+.window > .content > .chat > .text > i > b {
     color: #fff;
 }
 
