@@ -31,48 +31,50 @@ window.addEventListener('load', () => {
                     if (introState === 2) {
                         clearInterval(waitRep);
                         msg.disabled = true;
-                        botSubmit(`Enchanté ${username}, moi c'est ${friend} ! Mais je peux changer de nom si tu le désires.`);
                         setTimeout(() => {
-                            botSubmit(intro[3]);
+                            botSubmit(`Enchanté ${username}, moi c'est ${friend} ! Mais je peux changer de nom si tu le désires.`);
                             setTimeout(() => {
-                                msg.disabled = false;
-                                msg.focus();
-                                introState = 3;
-                                waitRep = setInterval(() => {
-                                    if (introState === 4) {
-                                        clearInterval(waitRep);
-                                        msg.disabled = true;
-                                        friend === '<b>Heart Release</b>' ? botSubmit(intro[4]) : botSubmit(`Parfait ! Je m'appellerai donc désormais ${friend}.`);
-                                        setTimeout(() => {
-                                            botSubmit(intro[5]);
+                                botSubmit(intro[3]);
+                                setTimeout(() => {
+                                    msg.disabled = false;
+                                    msg.focus();
+                                    introState = 3;
+                                    waitRep = setInterval(() => {
+                                        if (introState === 4) {
+                                            clearInterval(waitRep);
+                                            msg.disabled = true;
+                                            friend === '<b>Heart Release</b>' ? botSubmit(intro[4]) : botSubmit(`Parfait ! Je m'appellerai donc désormais ${friend}.`);
                                             setTimeout(() => {
-                                                botSubmit(intro[6]);
+                                                botSubmit(intro[5]);
                                                 setTimeout(() => {
-                                                    botSubmit(intro[7]);
+                                                    botSubmit(intro[6]);
                                                     setTimeout(() => {
-                                                        botSubmit(intro[8]);
+                                                        botSubmit(intro[7]);
                                                         setTimeout(() => {
-                                                            botSubmit(intro[9]);
+                                                            botSubmit(intro[8]);
                                                             setTimeout(() => {
-                                                                botSubmit(intro[10]);
+                                                                botSubmit(intro[9]);
                                                                 setTimeout(() => {
-                                                                    botSubmit(intro[11]);
+                                                                    botSubmit(intro[10]);
                                                                     setTimeout(() => {
-                                                                        msg.disabled = false;
-                                                                        msg.focus();
-                                                                        introEnd = true;
-                                                                    }, 1600);
-                                                                }, 2000);
+                                                                        botSubmit(intro[11]);
+                                                                        setTimeout(() => {
+                                                                            msg.disabled = false;
+                                                                            msg.focus();
+                                                                            introEnd = true;
+                                                                        }, 1600);
+                                                                    }, 2000);
+                                                                }, 3000);
                                                             }, 3000);
                                                         }, 3000);
                                                     }, 3000);
                                                 }, 3000);
-                                            }, 3000);
-                                        }, 2000);
-                                    }
-                                }, 1000);
+                                            }, 2000);
+                                        }
+                                    }, 1000);
+                                }, 2000);
                             }, 2000);
-                        }, 2000);
+                        }, 1600);
                     }
                 }, 1000);
             }, 2000);
