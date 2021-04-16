@@ -17,6 +17,7 @@ window.addEventListener('load', () => {
         'Ah, j\'allais oublier ! Si à un moment tu souhaites que je te propose des conseils, envoie "<b>HELP</b>". Sur ce,' +
         ' bonne session à toi !'
     ];
+    let timeOut;
     msg.disabled = true;
     botSubmit(intro[0]);
     setTimeout(() => {
@@ -45,30 +46,41 @@ window.addEventListener('load', () => {
                                             msg.disabled = true;
                                             friend === '<b>Heart Release</b>' ? botSubmit(intro[4]) : botSubmit(`Parfait ! Je m'appellerai donc désormais ${friend}.`);
                                             setTimeout(() => {
-                                                botSubmit(intro[5]);
+                                                document.getElementById('skip-intro').style.animation = 'lazy .1s forwards';
                                                 setTimeout(() => {
-                                                    botSubmit(intro[6]);
-                                                    setTimeout(() => {
-                                                        botSubmit(intro[7]);
-                                                        setTimeout(() => {
-                                                            botSubmit(intro[8]);
-                                                            setTimeout(() => {
-                                                                botSubmit(intro[9]);
-                                                                setTimeout(() => {
-                                                                    botSubmit(intro[10]);
-                                                                    setTimeout(() => {
-                                                                        botSubmit(intro[11]);
-                                                                        setTimeout(() => {
-                                                                            msg.disabled = false;
-                                                                            msg.focus();
-                                                                            introEnd = true;
-                                                                        }, 1600);
-                                                                    }, 2000);
+                                                    if (!introEnd) {
+                                                        botSubmit(intro[5]);
+                                                        timeOut = setTimeout(() => {
+                                                            botSubmit(intro[6]);
+                                                            timeOut = setTimeout(() => {
+                                                                botSubmit(intro[7]);
+                                                                timeOut = setTimeout(() => {
+                                                                    botSubmit(intro[8]);
+                                                                    timeOut = setTimeout(() => {
+                                                                        botSubmit(intro[9]);
+                                                                        timeOut = setTimeout(() => {
+                                                                            botSubmit(intro[10]);
+                                                                            timeOut = setTimeout(() => {
+                                                                                botSubmit(intro[11]);
+                                                                                timeOut = setTimeout(() => {
+                                                                                    msg.disabled = false;
+                                                                                    msg.focus();
+                                                                                    edit.style.cursor = 'pointer';
+                                                                                    document.getElementById('skip-intro').style.animation = '';
+                                                                                    document.getElementById('skip-intro').style.opacity = '0';
+                                                                                    timeOut = setTimeout(() => {
+                                                                                        document.getElementById('skip-intro').style.display = 'none';
+                                                                                        introEnd = true;
+                                                                                    }, 100);
+                                                                                }, 1600);
+                                                                            }, 2000);
+                                                                        }, 3000);
+                                                                    }, 3000);
                                                                 }, 3000);
                                                             }, 3000);
                                                         }, 3000);
-                                                    }, 3000);
-                                                }, 3000);
+                                                    }
+                                                }, 100);
                                             }, 2000);
                                         }
                                     }, 1000);
@@ -80,4 +92,26 @@ window.addEventListener('load', () => {
             }, 2000);
         }, 2000);
     }, 2000);
+
+    document.getElementById('skip-intro').addEventListener('click', () => {
+        if (!introEnd) {
+            clearTimeout(timeOut);
+            document.getElementById('skip-intro').style.animation = '';
+            document.getElementById('skip-intro').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('skip-intro').style.display = 'none';
+                botSubmit('Oups, je parle beaucoup, pardonne-moi !');
+                setTimeout(() => {
+                    botSubmit('Une dernière chose, si à un moment tu souhaites que je te propose des conseils, envoie "HELP". Sur ce, bonne session à toi !');
+                    setTimeout(() => {
+                        msg.disabled = false;
+                        msg.focus();
+                        edit.style.cursor = 'pointer';
+                        introEnd = true;
+                        introState = 5;
+                    }, 1600);
+                }, 1600);
+            }, 100);
+        }
+    });
 });

@@ -31,11 +31,12 @@ function submitEvent() {
                 username = `<b>${msg.value}</b>`;
                 introState = 2;
             } else if (introState === 3) {
-                if (msg.value.replaceAll(' ', '').toLowerCase() !== 'non') friend = `<b>${msg.value}</b>`;
+                if (msg.value.replaceAll(' ', '').toLowerCase() !== 'non') {
+                    friend = `<b>${msg.value}</b>`;
+                    document.getElementById('name').innerText = msg.value;
+                }
                 introState = 4;
             }
-        } else {
-            edit.style.cursor = 'default';
         }
 
         if (editState !== 0) {
@@ -55,6 +56,7 @@ function submitEvent() {
                     editState = 4;
                 } else if (editState === 3) {
                     friend = `<b>${msg.value}</b>`;
+                    document.getElementById('name').innerText = msg.value;
                     editState = 4;
                 }
             }

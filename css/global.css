@@ -323,3 +323,9 @@ footer {
 #edit-name {
     cursor: not-allowed;
 }
+
+#skip-intro {
+    animation: ;
+    transition: .1s;
+    opacity: 0;
+}
